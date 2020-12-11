@@ -6,8 +6,16 @@ const Project = require('./model');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-   try {
+   try {      
       const data = await Project.getAll();
+      data.forEach(project => {
+         if (project.completed == 0) {
+            project.completed = false;
+         } else {
+            project.completed = true
+         }
+      })
+      // project.completed ? true : false;
       res.json(data);
    } catch (error) {
       res.status(500).json({ message: error.message })

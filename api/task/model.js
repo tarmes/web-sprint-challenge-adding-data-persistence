@@ -5,8 +5,8 @@ module.exports = {
    getAll() {
       return db('tasks');
    },
-   create(project) {
-      return db('tasks').insert(project)
+   create(task) {
+      return db('tasks').insert(task)
          .then(([id]) => {
             return db('tasks').where('id', id).first()
          })

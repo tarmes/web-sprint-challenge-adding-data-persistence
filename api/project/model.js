@@ -10,5 +10,13 @@ module.exports = {
          .then(([id]) => {
             return db('projects').where('id', id).first()
          })
+         .then(project => {
+            if (project.completed == 0) {
+               project.completed = false;
+            } else {
+               project.completed = true;
+            }
+            return(project)
+         })
    }
 }

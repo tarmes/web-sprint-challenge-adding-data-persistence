@@ -5,8 +5,8 @@ module.exports = {
    getAll() {
       return db('resources');
    },
-   create(project) {
-      return db('resources').insert(project)
+   create(resource) {
+      return db('resources').insert(resource)
          .then(([id]) => {
             return db('resources').where('id', id).first()
          })
