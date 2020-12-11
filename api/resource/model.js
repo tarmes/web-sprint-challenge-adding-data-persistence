@@ -3,12 +3,12 @@ const db = require('../../data/dbConfig');
 
 module.exports = {
    getAll() {
-      return db('projects');
+      return db('resources');
    },
    create(project) {
-      return db('projects').insert(project)
+      return db('resources').insert(project)
          .then(([id]) => {
-            return db('projects').where('id', id).first()
+            return db('resources').where('id', id).first()
          })
    }
 }
