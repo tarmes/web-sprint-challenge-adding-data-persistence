@@ -18,18 +18,20 @@ exports.up = function(knex) {
          table.string('notes', 128)
          table.boolean('completed').defaultTo(false)
          table.integer('resource_id')
-            .unsigned().notNullable()
+            .unsigned()
             .references('id').inTable('resources')
             .onDelete('RESTRICT').onUpdate('RESTRICT')
          table.integer('project_id')
             .unsigned().notNullable()
             .references('id').inTable('projects')
-            .onDelete('RESTRICT').onUpdate('RESTRICT')
+            .onDelete('RESTRICT').onUpdate('RESTRICT')        
+      
       })
 };
 
 exports.down = function(knex) {
    return knex.schema
+      .dropTableIfExists('task_links')
       .dropTableIfExists('tasks')
       .dropTableIfExists('projects')
       .dropTableIfExists('resources')
